@@ -23,8 +23,8 @@ const puppeteerGet = async (url) => {
 const getNfe = async (req, res) => {
   const bd = req.body;
   // const nfehtml = await genericService.getNfeHtml(bd.nfeurl);
+  const nfehtml = await puppeteerGet(bd.nfeurl.replace('http://', 'https://'));
   try {
-    const nfehtml = await puppeteerGet(bd.nfeurl.replace('http://', 'https://'));
     const parsed = parse(nfehtml);
     const itemsList = parsed.querySelectorAll('*[id^="Item +"]');
 
@@ -117,7 +117,7 @@ const getNfe = async (req, res) => {
     // res.send(finalJson);
   } catch (error) {
     console.error(error);
-    res.send(error);
+    res.send(nfehtml);
   }
 };
 
