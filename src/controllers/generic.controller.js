@@ -63,7 +63,10 @@ const getNfe = async (req, res) => {
       qtdItens += parseInt(itemQtd);
     });
 
-    const nomeEstabelecimento = parse(parsed).querySelector('.txtCenter > .txtTopo').text;
+    const htmlEstabelecimento = parse(parsed).querySelector('.txtCenter > .txtTopo');
+
+    const nomeEstabelecimento = htmlEstabelecimento ? htmlEstabelecimento.text : 'não informado';
+
     const cnpjEstabelecimento = parse(parsed)
       .querySelector('.txtCenter .text:not(:last-child)')
       .text.split('CNPJ:')[1]
@@ -110,8 +113,8 @@ const getNfe = async (req, res) => {
 
     // console.log(finalJson);
 
-    // res.send(nfehtml);
-    res.send(finalJson);
+    res.send(nfehtml);
+    // res.send(finalJson);
   } catch (error) {
     console.error(error);
     res.send(error);
