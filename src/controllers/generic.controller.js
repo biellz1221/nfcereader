@@ -1,7 +1,10 @@
 // const catchAsync = require('../utils/catchAsync');
 const { parse } = require('node-html-parser');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { genericService } = require('../services');
+
+puppeteer.use(StealthPlugin());
 
 const puppeteerGet = async (url) => {
   try {
@@ -113,8 +116,8 @@ const getNfe = async (req, res) => {
 
     // console.log(finalJson);
 
-    res.send(nfehtml);
-    // res.send(finalJson);
+    // res.send(nfehtml);
+    res.send(finalJson);
   } catch (error) {
     console.error(error);
     res.send(nfehtml);
