@@ -3,7 +3,7 @@ const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
-const { genericController } = require('../../controllers');
+const { genericController, hotmartController } = require('../../controllers');
 
 const router = express.Router();
 
@@ -11,6 +11,10 @@ const defaultRoutes = [
   {
     path: '/nfe',
     route: genericController.getNfe,
+  },
+  {
+    path: '/hotmart',
+    route: hotmartController.hotmart,
   },
   {
     path: '/auth',
